@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Record List</h1>
+{% for record in records %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ record.album_title }}</span>
+      <p>Artist: {{ record.artist }}</p>
+      <p>Label: {{ record.label }}</p>
+      <p>Year: {{ record.year }}</p>
+      {% if record.size < 12 %}
+        <p>Size: {{ record.size }}"</p>
+      {% else %}
+        <p>Size: LP (12")</p>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
