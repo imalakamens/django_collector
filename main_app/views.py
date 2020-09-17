@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Record
 
 # Create your views here.
@@ -22,3 +22,11 @@ def records_detail(request, record_id):
 class RecordCreate(CreateView):
     model = Record
     fields = '__all__'
+
+class RecordUpdate(UpdateView):
+    model = Record
+    fields = ['artist','label','year','size']
+
+class RecordDelete(DeleteView):
+    model = Record
+    success_url = '/records/'

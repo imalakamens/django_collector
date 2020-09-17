@@ -14,6 +14,10 @@
       <p>Size: LP (12")</p>
     {% endif %}
   </div>
+  <div class="card-action">
+    <a href="{% url 'records_update' record.id %}">Edit</a>
+    <a href="{% url 'records_delete' record.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}
