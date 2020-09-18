@@ -2,11 +2,11 @@ from django.db import models
 from django.urls import reverse
 
 RATINGS = (
-    ('1', 'Not so good...'),
-    ('2', 'Could be better'),
-    ('3', 'It was alright'),
-    ('4', 'Pretty good...'),
-    ('5', 'AMAZING!')
+    ('1', '1/5 - Not so good...'),
+    ('2', '2/5 - Could be better'),
+    ('3', '3/5 - It was alright'),
+    ('4', '4/5 - Pretty good...'),
+    ('5', '5/5 - AMAZING!')
 )
 
 # Create your models here.
@@ -23,8 +23,11 @@ class Record(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'record_id' : self.id})
 
+    def review_count(self):
+        return self.review_set.all().count() > 1
+
 class Review(models.Model):
-    description = models.TextField(max_length=250)
+    reviewer = models.CharField('reviewer', max_length=50)
     rating = models.CharField(
         max_length=1,
         choices=RATINGS,

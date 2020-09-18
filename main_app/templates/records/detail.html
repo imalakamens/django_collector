@@ -28,14 +28,19 @@
       {{ review_form.as_p }}
       <input type="submit" class="btn" value="Add Review">
     </form>
+    {% if record.review_count %}
+      <div class="card-panel teal-text center-align">This record has a few reviews!</div>
+    {% else %}
+      <div class="card-panel red-text center-align">This record needs reviews...</div>
+      {% endif %}
     <table class="striped">
       <thead>
-        <tr><th>Description</th><th>Rating</th></tr>
+        <tr><th>Reviewer</th><th>Rating</th></tr>
       </thead>
       <tbody>
         {% for review in record.review_set.all %}
         <tr>
-          <td>{{review.description}}</td>
+          <td>{{review.reviewer}}</td>
           <td>{{review.get_rating_display}}</td>
         </tr>
         {% endfor %}
