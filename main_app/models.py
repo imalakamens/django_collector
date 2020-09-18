@@ -38,3 +38,13 @@ class Review(models.Model):
 
     def __str__(self):
         return f'{self.get_rating_display()}'
+
+class Crate(models.Model):
+    owner = models.CharField(max_length=50)
+    records = models.ManyToManyField(Record)
+
+    def __str__(self):
+        return f'{self.owner}\'s crate'
+    
+    def get_absolute_url(self):
+        return reverse('crates_detail', kwargs={'pk' : self.id})
